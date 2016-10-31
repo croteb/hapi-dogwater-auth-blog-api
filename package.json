@@ -14,7 +14,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node app.js",
+    "clean": "rm -rf node_modules",
+    "start": "./node_modules/.bin/pm2 start app.js --watch --no-daemon",
     "test": "node test/test.js"
   },
   "keywords": [],

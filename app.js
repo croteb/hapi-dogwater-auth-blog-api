@@ -1,28 +1,11 @@
 const Hapi = require('hapi');
 const Dogwater = require('dogwater');
 const Memory = require('sails-memory');
-
+const modelsFile = require('./models/models.js');
 const server = new Hapi.Server();
 server.connection({ port: 3000 });
-
-server.route({
-  method: 'get',
-  path: '/dogs/{id}',
-  handler: function (request, reply) {
-    const Dogs = request.collections().dogs;
-    reply(Dogs.findOne(request.params.id));
-  }
-});
-
-server.route({
-  method: 'get',
-  path: '/post',
-  handler: function(request,reply) {
-    console.log("post");
-    const Posts = request.collections().posts;
-    reply(Posts);
-  }
-})
+const routes = require('./routes/routes.js');
+server.route(routes);
 
 server.register({
   register: Dogwater,
@@ -32,53 +15,14 @@ server.register({
     },
     connections: {
       simple: { adapter: 'memory' }
-    }
+    },
+    models: modelsFile
   }
 }, (err) => {
   if (err) {
     throw err;
   }
   // Define a model using a connection declared above
-  server.dogwater({
-    identity: 'dogs',
-    connection: 'simple',
-    attributes: { name: 'string' }
-  });
-  server.dogwater({
-    identity: 'user',
-    connection: 'simple',
-    attributes: {
-      username: 'string',
-      posts: {
-        collection: 'post',
-        via: 'owner'
-      }
-    }
-  });
-  server.dogwater({
-    identity: 'post',
-    connection: 'simple',
-    attributes: {
-      content: 'string',
-      owner: {
-        model: 'user'
-      },
-      comments: {
-        collection: 'comment',
-        via: 'parent'
-      }
-    }
-  });
-  server.dogwater({
-    identity: 'comment',
-    connection: 'simple',
-    attributes: {
-      content: 'string',
-      parent: {
-        model: 'post'
-      }
-    }
-  });
   if (!module.parent) {
     server.start((err) => {
       if (err) {
