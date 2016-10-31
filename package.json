@@ -1,0 +1,23 @@
+{
+  "name": "kustomer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "code": "^4.0.0",
+    "dogwater": "^2.2.0",
+    "hapi": "^15.2.0",
+    "lab": "^11.1.0",
+    "pm2": "^2.0.19",
+    "sails-memory": "^0.10.7",
+    "waterline": "^0.11.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "test": "node test/test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
