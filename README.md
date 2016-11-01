@@ -1,5 +1,5 @@
 # hapi, Dogwater, Http-Basic-Auth Blog API Example
-This is a simple combining of various technologies to show how they might interact with each other. Also looking at ES6.
+This is a simple example that combines of various plugins to show how they might interact with each other. Also looking at ES6.
 
 # Stack Reasoning
 * hapi (https://github.com/hapijs/hapi) - Having written several RESTful APIs in Node.js over the years I've always liked the pluggability of hapi for expansion as needed (jwt,oauth,logging,etc) and know its used in production (walmart, etc).
