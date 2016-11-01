@@ -35,3 +35,9 @@ curl http://localhost:3000/posts/1 # get a specific post and its comments
 * User management is static via fixtures right now. Allow users to register on demand.
 * Move from memory storage to disk/sql/nosql.
 * Move to more external config based configuration.
+
+# Directories
+* fixtures - data to load into app on startup / test
+* models - data models the app uses
+* routes - api routes to associate with app
+* test - test suite using lab and code (like hapi)
