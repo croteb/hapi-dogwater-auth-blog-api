@@ -135,19 +135,21 @@ lab.experiment("HTTP REST API Tests", function() {
     server.inject(options, function(response) {
       Code.expect(response.statusCode).to.equal(200);
       Code.expect(response.result.content).to.equal("first comment");
+      Code.expect(response.result.name).to.equal("anonymous");
       Code.expect(response.result.parent).to.equal(1);
       done();
     });
   });
-  lab.test("anonymous comment 2 on post 1",function(done){
+  lab.test("non-anonymous comment 2 on post 1",function(done){
     var options = {
       method: "POST",
       url: "/posts/1/comments",
-      payload: '{"content":"second comment"}'
+      payload: '{"content":"second comment","name":"bunga"}'
     };
     server.inject(options, function(response) {
       Code.expect(response.statusCode).to.equal(200);
       Code.expect(response.result.content).to.equal("second comment");
+      Code.expect(response.result.name).to.equal("bunga");
       Code.expect(response.result.parent).to.equal(1);
       done();
     });

@@ -23,6 +23,7 @@ const validate = function (request, username, password, callback) {
 
 const routes = require('./routes/routes.js');
 
+// register dogwater and http basic auth plugins
 server.register([{
   register: Dogwater,
   options: {
@@ -41,9 +42,10 @@ server.register([{
   if (err) {
     throw err;
   }
+  // make auth available
   server.auth.strategy('simple', 'basic', { validateFunc: validate });
   server.route(routes);
-  // Define a model using a connection declared above
+  // if executing directly then start server
   if (!module.parent) {
     server.start((err) => {
       if (err) {

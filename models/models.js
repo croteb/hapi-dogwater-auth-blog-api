@@ -1,5 +1,6 @@
 module.exports = [
 {
+  // users have posts
   identity: 'users',
   connection: 'simple',
   attributes: {
@@ -12,6 +13,7 @@ module.exports = [
   }
 },
 {
+  // posts belong to a user
   identity: 'posts',
   connection: 'simple',
   attributes: {
@@ -26,10 +28,12 @@ module.exports = [
   }
 },
 {
+  // comments belong to a post (but can be anonymous as implemented)
   identity: 'comments',
   connection: 'simple',
   attributes: {
     content: 'string',
+    name: 'string',
     parent: {
       model: 'posts'
     }

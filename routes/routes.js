@@ -42,7 +42,8 @@ module.exports = [
   config: {
     validate: {
       payload: {
-        content: Joi.string()
+        content: Joi.string(),
+        name: Joi.string().optional()
       }
     }
   },
@@ -55,7 +56,8 @@ module.exports = [
         reply("Post not found").code(422);
       } else {
         const Comments = request.collections().comments;
-        Comments.create({content: request.payload.content, parent: request.params.id}).exec(function(err,comment){
+        const name = request.payload.name || "anonymous";
+        Comments.create({content: request.payload.content, parent: request.params.id, name: name}).exec(function(err,comment){
           if(err){
             reply(err).code(500);
           } else {

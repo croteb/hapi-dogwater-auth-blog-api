@@ -19,7 +19,7 @@ curl -D - http://localhost:3000/posts/10/comments -H "Content-Type: application/
 echo -e "\ncommenting"
 curl http://localhost:3000/posts/1/comments -H "Content-Type: application/json" -d '{"content":"first comment!!!!"}'
 echo -e "\nsecond commenting"
-curl http://localhost:3000/posts/1/comments -H "Content-Type: application/json" -d '{"content":"second comment!!!!"}'
+curl http://localhost:3000/posts/1/comments -H "Content-Type: application/json" -d '{"content":"second comment!!!!", "name": "bunga"}'
 
 echo -e "\ncheck first comment on first post"
 curl http://localhost:3000/posts/1
