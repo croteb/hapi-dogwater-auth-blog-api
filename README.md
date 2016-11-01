@@ -3,13 +3,34 @@ This is a simple combining of various technologies to show how they might intera
 
 # Reasoning
 HAPI - Having written several RESTful APIs in Node.js over the years I liked the pluggability of hapi.
-Dogwater - I like the waterline ORM because it allows you a lot of flexibility for swapping in/out various SQL and NoSQL options.
+Dogwater - I like the waterline ORM because it allows you a lot of flexibility for swapping in/out various SQL and NoSQL options. This sample does everythin in memory for convenience.
 Http-Basic-Auth - This plugin allows a simple auth strategy via standard HTTP auth for consumption.  Because of the plugin nature of hapi you are not strictly locked to that one method which means its easy to expand to a user/cookie/webpage without major refactoring.
 
 # Getting started
+```
 git clone git@github.com:croteb/hapi-dogwater-auth-blog-api.git
 cd hapi-dogwater-auth-blog-api
 npm install .
 npm test # runs test suite
 npm start # starts server
-./test.sh
+./test.sh # run the curl tests
+
+```
+
+# API endpoints
+```
+curl http://localhost:3000/posts # get all posts and comments
+curl http://localhost:3000/posts -H "Content-Type: application/json" -u "john:secret" -d '{"content": "this is a thread"}' # post a new post
+curl http://localhost:3000/posts/1/comments -H "Content-Type: application/json" -d '{"content":"first comment!!!!"}' # comment on a post
+curl http://localhost:3000/posts/1 # get a specific post and its comments
+```
+
+# Tested with
+* Ubuntu 16.04.1 LTS
+* node v6.9.1
+* npm 3.10.8
+
+# Assumptions / futures
+* User management is static via fixtures right now. Allow users to register /
+* Move from memory storage to disk/sql/nosql.
+
