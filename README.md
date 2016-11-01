@@ -34,7 +34,7 @@ curl http://localhost:3000/posts/1 # get a specific post and its comments
 # Assumptions / futures
 * User management is static via fixtures right now. Allow users to register on demand.
 * Move from memory storage to disk/sql/nosql.
-* Move to more external config based configuration.
+* Move to a more external config based configuration.
 * Threaded comments
 * Pagination / filtering of posts and comments
 
