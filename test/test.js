@@ -7,15 +7,10 @@ lab.experiment("Basic HTTP Tests", function() {
   // tests
   lab.before((done) => {
     server.initialize((err) => {
-      const Dogs = server.collections().dogs;
-      console.log("creating dogs");
-      Dogs.create([
-          { name: 'Guinness' },
-          { name: 'Sully' },
-          { name: 'Ren' }
-      ]).then(() => { done() });
+      require('../fixtures/fixtures.js')(server,done);
     });
   });
+  /*
   lab.test("Get dog 1", function(done) {
     var options = {
       method: "GET",
@@ -28,4 +23,5 @@ lab.experiment("Basic HTTP Tests", function() {
       done();                                         // done() callback is required to end the test.
     });
   });
+  */
 });

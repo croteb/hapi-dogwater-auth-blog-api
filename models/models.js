@@ -1,41 +1,37 @@
 module.exports = [
 {
-  identity: 'dogs',
-  connection: 'simple',
-  attributes: { name: 'string' }
-},
-{
-  identity: 'user',
+  identity: 'users',
   connection: 'simple',
   attributes: {
     username: 'string',
+    password: 'string',
     posts: {
-      collection: 'post',
+      collection: 'posts',
       via: 'owner'
     }
   }
 },
 {
-  identity: 'post',
+  identity: 'posts',
   connection: 'simple',
   attributes: {
     content: 'string',
     owner: {
-      model: 'user'
+      model: 'users'
     },
     comments: {
-      collection: 'comment',
+      collection: 'comments',
       via: 'parent'
     }
   }
 },
 {
-  identity: 'comment',
+  identity: 'comments',
   connection: 'simple',
   attributes: {
     content: 'string',
     parent: {
-      model: 'post'
+      model: 'posts'
     }
   }
 }

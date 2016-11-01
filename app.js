@@ -3,27 +3,19 @@ const Dogwater = require('dogwater');
 const HapiBasicAuth = require('hapi-auth-basic');
 const Memory = require('sails-memory');
 const modelsFile = require('./models/models.js');
+const Bcrypt = require('bcrypt');
 const server = new Hapi.Server();
-
 
 server.connection({ port: 3000 });
 
-const Bcrypt = require('bcrypt');
-const users = {
-  john: {
-    username: 'john',
-    password: '$2a$10$iqJSHD.BGr0E2IxQwYgJmeP3NvhPrXAeLSaGCj6IR/XU5QtjVu5Tm',   // 'secret'
-    name: 'John Doe',
-    id: '2133d32a'
-  }
-};
 const validate = function (request, username, password, callback) {
-  const user = users[username];
-  if (!user) {
-    return callback(null, false);
-  }
-  Bcrypt.compare(password, user.password, (err, isValid) => {
-    callback(err, isValid, { id: user.id, name: user.name });
+  request.collections().users.findOneByUsername(username,function(err,user){
+    if (!user || err) {
+      return callback(null, false);
+    }
+    Bcrypt.compare(password, user.password, (err, isValid) => {
+      callback(err, isValid, { id: user.id, name: user.username });
+    });
   });
 };
 
@@ -56,18 +48,7 @@ server.register([{
         throw err;
       }
       // Add some records
-      const Dogs = server.collections().dogs;
-      Dogs.create([
-          { name: 'Guinness' },
-          { name: 'Sully' },
-          { name: 'Ren' }
-      ])
-        .then(() => {
-          console.log(`Go find some dogs at ${server.info.uri}`);
-        })
-      .catch((err) => {
-        console.error(err);
-      });
+      require('./fixtures/fixtures.js')(server)
     });
   }
 });
