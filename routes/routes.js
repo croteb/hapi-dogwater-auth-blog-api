@@ -10,6 +10,7 @@ module.exports = [
 {
   method: 'get',
   path: '/post',
+  config: { auth: 'simple' },
   handler: function(request,reply) {
     console.log("post");
     const Posts = request.collections().posts;

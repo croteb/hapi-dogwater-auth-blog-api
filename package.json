@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "bcrypt": "^0.8.7",
     "code": "^4.0.0",
     "dogwater": "^2.2.0",
     "hapi": "^15.2.0",
+    "hapi-auth-basic": "^4.2.0",
     "lab": "^11.1.0",
     "pm2": "^2.0.19",
     "sails-memory": "^0.10.7",
