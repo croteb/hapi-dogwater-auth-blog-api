@@ -1,6 +1,7 @@
 const Joi = require('joi');
 module.exports = [
 {
+  // get a specific post and its comments
   method: 'get',
   path: '/posts/{id}',
   handler: function (request, reply) {
@@ -15,6 +16,7 @@ module.exports = [
   }
 },
 {
+  // create a new post, authenticate it and validate the payload
   method: 'post',
   path: '/posts',
   config: {
@@ -37,6 +39,7 @@ module.exports = [
   }
 },
 {
+  // add a comment to an existing post
   method: 'post',
   path: '/posts/{id}/comments',
   config: {
@@ -69,6 +72,7 @@ module.exports = [
   }
 },
 {
+  // get all posts and all comments
   method: 'get',
   path: '/posts',
   handler: function(request,reply) {

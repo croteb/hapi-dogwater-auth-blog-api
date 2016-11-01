@@ -51,8 +51,11 @@ server.register([{
       if (err) {
         throw err;
       }
-      // Add some records
-      require('./fixtures/fixtures.js')(server,function(){
+      // Add some users 
+      require('./fixtures/fixtures.js')(server,function(err){
+        if(err) {
+          throw err;
+        }
         console.log("Done bootstrapping memory");
       })
     });

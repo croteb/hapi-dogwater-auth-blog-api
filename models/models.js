@@ -13,7 +13,7 @@ module.exports = [
   }
 },
 {
-  // posts belong to a user
+  // posts have content and belong to a user
   identity: 'posts',
   connection: 'simple',
   attributes: {
@@ -28,7 +28,7 @@ module.exports = [
   }
 },
 {
-  // comments belong to a post (but can be anonymous as implemented)
+  // comments have content, an optional name, and belong to a post (but can be anonymous as implemented)
   identity: 'comments',
   connection: 'simple',
   attributes: {

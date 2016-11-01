@@ -36,6 +36,7 @@ curl http://localhost:3000/posts/1 # get a specific post and its comments
 * Move from memory storage to disk/sql/nosql.
 * Move to more external config based configuration.
 * Threaded comments
+* Pagination / filtering of posts and comments
 
 # Directories
 * fixtures - data to load into app on startup / test
