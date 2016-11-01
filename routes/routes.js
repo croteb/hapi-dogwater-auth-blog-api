@@ -1,3 +1,4 @@
+const Joi = require('joi');
 module.exports = [
 {
   method: 'get',
@@ -16,11 +17,17 @@ module.exports = [
 {
   method: 'post',
   path: '/posts',
-  config: { auth: 'simple' },
+  config: {
+    auth: 'simple',
+    validate: {
+      payload: {
+        content: Joi.string()
+      }
+    }
+  },
   handler: function(request,reply){
     const Posts = request.collections().posts;
-    const data = request.payload.content || "";
-    Posts.create({content: data, owner: request.auth.credentials.id}).exec(function(err,data){
+    Posts.create({content: request.payload.content, owner: request.auth.credentials.id}).exec(function(err,data){
       if(err){
         reply(err).code(500);
       } else {
@@ -32,6 +39,13 @@ module.exports = [
 {
   method: 'post',
   path: '/posts/{id}/comments',
+  config: {
+    validate: {
+      payload: {
+        content: Joi.string()
+      }
+    }
+  },
   handler: function(request,reply){
     const Posts = request.collections().posts;
     Posts.find(request.params.id).exec(function(err,post){
@@ -39,7 +53,7 @@ module.exports = [
         reply(err).code(500);
       } else {
         const Comments = request.collections().comments;
-        Comments.create({content: request.payload.content,parent: request.params.id}).exec(function(err,comment){
+        Comments.create({content: request.payload.content, parent: request.params.id}).exec(function(err,comment){
           if(err){
             reply(err).code(500);
           } else {
