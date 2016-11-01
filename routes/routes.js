@@ -48,9 +48,11 @@ module.exports = [
   },
   handler: function(request,reply){
     const Posts = request.collections().posts;
-    Posts.find(request.params.id).exec(function(err,post){
+    Posts.findOne(request.params.id).exec(function(err,post){
       if(err){
         reply(err).code(500);
+      } else if(!post){
+        reply("Post not found").code(422);
       } else {
         const Comments = request.collections().comments;
         Comments.create({content: request.payload.content, parent: request.params.id}).exec(function(err,comment){

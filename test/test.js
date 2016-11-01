@@ -115,6 +115,17 @@ lab.experiment("HTTP REST API Tests", function() {
       done();
     });
   });
+  lab.test("anonymous comment 1 on post 10 that doesn't exist",function(done){
+    var options = {
+      method: "POST",
+      url: "/posts/10/comments",
+      payload: '{"content":"first comment"}'
+    };
+    server.inject(options, function(response) {
+      Code.expect(response.statusCode).to.equal(422);
+      done();
+    });
+  });
   lab.test("anonymous comment 1 on post 1",function(done){
     var options = {
       method: "POST",
