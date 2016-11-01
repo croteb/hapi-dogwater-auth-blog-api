@@ -3,7 +3,7 @@ var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var server = require("../app.js");
 
-lab.experiment("Basic HTTP Tests", function() {
+lab.experiment("HTTP REST API Tests", function() {
   // tests
   lab.before((done) => {
     server.initialize((err) => {
@@ -46,6 +46,39 @@ lab.experiment("Basic HTTP Tests", function() {
       done();
     });
   });
+  lab.test("bad user post on password",function(done){
+    var username = "john";
+    var password = "secret1";
+    var options = {
+      method: "POST",
+      url: "/posts",
+      headers: {
+        authorization: 'Basic ' + (new Buffer(username + ':' + password, 'utf8')).toString('base64')
+      },
+      payload: '{"content":"first post"}'
+    };
+    server.inject(options, function(response) {
+      Code.expect(response.statusCode).to.equal(401);
+      done();
+    });
+  });
+  lab.test("bad user post on username",function(done){
+    var username = "john1";
+    var password = "secret";
+    var options = {
+      method: "POST",
+      url: "/posts",
+      headers: {
+        authorization: 'Basic ' + (new Buffer(username + ':' + password, 'utf8')).toString('base64')
+      },
+      payload: '{"content":"first post"}'
+    };
+    server.inject(options, function(response) {
+      Code.expect(response.statusCode).to.equal(401);
+      done();
+    });
+  });
+
   lab.test("valid user post 1",function(done){
     var username = "john";
     var password = "secret";

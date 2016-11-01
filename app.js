@@ -9,10 +9,12 @@ const server = new Hapi.Server();
 server.connection({ port: 3000 });
 
 const validate = function (request, username, password, callback) {
+  // find user by username
   request.collections().users.findOneByUsername(username,function(err,user){
     if (!user || err) {
       return callback(null, false);
     }
+    // compare passwords
     Bcrypt.compare(password, user.password, (err, isValid) => {
       callback(err, isValid, { id: user.id, name: user.username });
     });
@@ -48,7 +50,9 @@ server.register([{
         throw err;
       }
       // Add some records
-      require('./fixtures/fixtures.js')(server)
+      require('./fixtures/fixtures.js')(server,function(){
+        console.log("Done bootstrapping memory");
+      })
     });
   }
 });

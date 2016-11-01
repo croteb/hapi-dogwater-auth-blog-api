@@ -1,5 +1,5 @@
 # Hapi, Dogwater, Http-Basic-Auth Blog API Example
-This is a simple combining of various technologies to show how they might interact with each other.
+This is a simple combining of various technologies to show how they might interact with each other. Also looking at ES6.
 
 # Reasoning
 HAPI - Having written several RESTful APIs in Node.js over the years I liked the pluggability of hapi.
@@ -31,6 +31,6 @@ curl http://localhost:3000/posts/1 # get a specific post and its comments
 * npm 3.10.8
 
 # Assumptions / futures
-* User management is static via fixtures right now. Allow users to register /
+* User management is static via fixtures right now. Allow users to register on demand.
 * Move from memory storage to disk/sql/nosql.
-
+* Move to more external config based configuration.
