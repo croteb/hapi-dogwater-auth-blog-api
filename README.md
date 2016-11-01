@@ -1,10 +1,10 @@
 # Hapi, Dogwater, Http-Basic-Auth Blog API Example
 This is a simple combining of various technologies to show how they might interact with each other. Also looking at ES6.
 
-# Reasoning
-* HAPI - Having written several RESTful APIs in Node.js over the years I've always liked the pluggability of hapi for expansion as needed (jwt,oauth,logging,etc) and know its used in production (walmart, etc).
-* Dogwater - I like the waterline ORM because it allows you a lot of flexibility for swapping in/out various SQL and NoSQL options. This sample does everything in memory for convenience.
-* Http-Basic-Auth - This plugin allows a simple auth strategy via standard HTTP auth for consumption.  Because of the plugin nature of hapi you are not strictly locked to that one method which means its easy to expand to a user/cookie/webpage without major refactoring.
+# Stack Reasoning
+* HAPI (https://github.com/hapijs/hapi) - Having written several RESTful APIs in Node.js over the years I've always liked the pluggability of hapi for expansion as needed (jwt,oauth,logging,etc) and know its used in production (walmart, etc).
+* Dogwater (https://github.com/devinivy/dogwater) - I like the waterline ORM because it allows you a lot of flexibility for swapping in/out various SQL and NoSQL options. This sample does everything in memory for convenience.
+* Http-Basic-Auth (https://github.com/hapijs/hapi-auth-basic) - This plugin allows a simple auth strategy via standard HTTP auth for consumption.  Because of the plugin nature of hapi you are not strictly locked to that one method which means its easy to expand to a user/cookie/webpage without major refactoring.
 
 # Getting started
 ```
